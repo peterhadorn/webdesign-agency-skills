@@ -17,25 +17,29 @@ Targets can be URLs, file paths, or a mix.
 
 ---
 
-## Core (Impeccable)
+## Step 1: Load Both
 
-### Step 1: Context
+- **URLs** — Navigate via Playwright to render each page
+- **Files** — Read each file into context
+- If either fails: report which and abort
 
-Check `.impeccable.md` at project root. If missing, ask which target (if either) is "yours" and run `/teach-impeccable` on it.
+## Step 2: Context
 
-### Step 2: Diagnose Both
+Check `.impeccable.md` at project root. If missing, ask which target is "yours" and run `/teach-impeccable` on it.
+
+## Step 3: Diagnose Both
 
 Run independently on each target:
 
 **Target A:**
-1. `/audit` — save findings
-2. `/critique` — save findings
+1. `/audit`
+2. `/critique`
 
 **Target B:**
-1. `/audit` — save findings
-2. `/critique` — save findings
+1. `/audit`
+2. `/critique`
 
-### Step 3: Compare
+## Step 4: Compare
 
 ```markdown
 ## Comparison: [A] vs [B]
@@ -61,7 +65,7 @@ Run independently on each target:
 - [Differences that are taste, not quality]
 
 ### Recommendation
-[1-2 sentences: which is stronger overall and why]
+[1-2 sentences: which is stronger and why]
 ```
 
 ### Rules
@@ -72,21 +76,18 @@ Run independently on each target:
 4. Reference actual content by name
 5. Both targets get equal scrutiny
 
----
-
-## Optional Extensions
-
-- **Playwright rendering** — Load live URLs, take desktop + mobile screenshots of both
-- **Visual comparison** — Side-by-side screenshot grid
-- **SEO comparison** — Title, meta, schema, heading structure for both
-- **Performance comparison** — Load times, resource counts, Core Web Vitals estimates
-
----
-
-## Next Steps
+## Step 5: Next Steps
 
 | Context | Offer |
 |---------|-------|
 | Your site vs competitor | "Run `/improve` to close the gaps?" |
 | Before vs after | Summarize improvements and regressions |
 | Two approaches | Recommend which to proceed with |
+
+---
+
+## Optional Extensions
+
+- **Screenshots** — Desktop + mobile of both targets via Playwright
+- **SEO comparison** — Title, meta, schema, heading structure for both
+- **Performance comparison** — Load times, resource counts

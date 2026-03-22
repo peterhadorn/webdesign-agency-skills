@@ -20,22 +20,26 @@ Read-only analysis. Never edits code or deploys anything.
 
 ---
 
-## Core (Impeccable)
+## Step 1: Load
 
-### Step 1: Context
+- **URL** — Navigate via Playwright to render the page
+- **Local file** — Read the file into context
+- If load fails: report error and abort
+
+## Step 2: Context
 
 Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first or copy from `config/examples/`.
 
-### Step 2: Diagnose
+## Step 3: Diagnose
 
-Run on the target page or file:
+Run on the loaded page:
 
 1. `/audit` — accessibility, performance, theming, responsive, anti-patterns
 2. `/critique` — visual hierarchy, information architecture, emotional resonance
 
-### Step 3: Generate Brief
+## Step 4: Generate Brief
 
-Synthesize audit + critique findings into the brief template below.
+Synthesize audit + critique findings into the brief below.
 
 ---
 
@@ -84,19 +88,19 @@ Every finding must answer: **"What does this cost me in customers or money?"**
 
 ---
 
-## Optional Extensions
-
-These are NOT part of the core analysis. Use when deeper data is needed.
-
-- **Playwright deep dive** — Load live URL, extract: meta tags, OG tags, Schema.org, font stack, console errors, load timing, touch targets, overflow
-- **SEO analysis** — Title quality, heading hierarchy, canonical URLs, robots.txt, sitemap
-- **Performance analysis** — Core Web Vitals, resource count, transfer size, render-blocking resources
-- **Sales brief formatting** — Localize to site language, draft outreach email from findings
-
----
-
-## Save
+## Step 5: Save
 
 1. Save brief to `clients/<domain>/analysis_YYYY-MM-DD.md` (or ask where)
 2. Display client-facing sections in chat
 3. Offer next steps (outreach email, `/improve` to fix, `/compare` vs competitor)
+
+---
+
+## Optional Extensions
+
+Not part of the core workflow. Use when deeper data is needed on top of audit + critique.
+
+- **SEO deep dive** — Title quality, heading hierarchy, canonical URLs, robots.txt, sitemap, OG tags, Schema.org
+- **Performance analysis** — Core Web Vitals, resource count, transfer size, render-blocking resources
+- **Technical extraction** — Console errors, load timing, touch target sizes, font stack, images without alt (counted via JS)
+- **Sales brief formatting** — Localize to site language, draft outreach email from findings

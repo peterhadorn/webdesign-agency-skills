@@ -13,13 +13,17 @@ Run all 15 treatment commands in optimal order with smart skip and check-ins.
 
 ---
 
-## Core (Impeccable)
+## Step 1: Load
 
-### Step 1: Context
+- **URL** — Navigate via Playwright to render the page
+- **Local file** — Read the file into context
+- If load fails: report error and abort
+
+## Step 2: Context
 
 Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first.
 
-### Step 2: Diagnose
+## Step 3: Diagnose
 
 1. `/audit` — save scores as baseline + findings for smart skip
 2. `/critique` — save findings for smart skip
@@ -38,7 +42,7 @@ Steps that will skip: [list with reason]
 Starting treatment.
 ```
 
-### Step 3: Treatment
+## Step 4: Treatment
 
 15 steps in order. **Structure before style, resilience before personality, polish last.**
 
@@ -72,7 +76,7 @@ Starting treatment.
 
 Category mapping: see [_recommendation-loop.md](./_recommendation-loop.md)
 
-### Step 4: Results
+## Step 5: Results
 
 Run `/audit` again. Compare:
 
@@ -93,8 +97,8 @@ Steps skipped: [list]
 
 ## Optional Extensions
 
-- **Playwright rendering** — Load live URL, take before/after screenshots at 1440px + 375px
-- **Visual comparison** — Side-by-side desktop + mobile screenshots
+- **Before/after screenshots** — Desktop (1440px) + mobile (375px) comparison via Playwright
+- **Visual diff** — Side-by-side screenshot grid
 - **Commit changes** — Stage and commit after treatment
 
 ---
@@ -103,8 +107,8 @@ Steps skipped: [list]
 
 | Command | Role |
 |---------|------|
-| `/audit` | Diagnostic (Step 2 + Step 4) |
-| `/critique` | Diagnostic (Step 2) |
+| `/audit` | Diagnostic (Step 3 + Step 5) |
+| `/critique` | Diagnostic (Step 3) |
 | `/teach-impeccable` | One-time setup |
 | `/frontend-design` | Full rebuilds, not incremental |
 | `/extract` | Post-treatment refactoring |

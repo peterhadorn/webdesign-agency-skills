@@ -13,22 +13,24 @@ Diagnose → recommend → fix → verify. Only runs what's needed.
 
 ---
 
-## Core (Impeccable)
+## Step 1: Load
 
-### Step 1: Context
+- **URL** — Navigate via Playwright to render the page
+- **Local file** — Read the file into context
+- If load fails: report error and abort
+
+## Step 2: Context
 
 Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first.
 
-### Step 2: Diagnose
-
-Run on the target:
+## Step 3: Diagnose
 
 1. `/audit` — accessibility, performance, theming, responsive, anti-patterns
 2. `/critique` — visual hierarchy, typography, color, spacing, emotional impact
 
 Save both reports. Do not fix anything yet.
 
-### Step 3: Recommend
+## Step 4: Recommend
 
 See [_recommendation-loop.md](./_recommendation-loop.md) for the shared engine.
 
@@ -48,7 +50,7 @@ Run all? Or select which to apply:
 
 Wait for user selection.
 
-### Step 4: Fix
+## Step 5: Fix
 
 Run each selected command in sequence:
 
@@ -60,26 +62,24 @@ Run each selected command in sequence:
 
 **Order matters**: structural (`/arrange`, `/adapt`) before visual (`/colorize`, `/typeset`) before polish (`/delight`, `/animate`). Reorder if needed — explain why.
 
-### Step 5: Polish
+## Step 6: Polish
 
 Run `/polish` as the final pass. Always.
 
-### Step 6: Verify
+## Step 7: Verify
 
 Ask: "Run another audit to verify? Or done?"
 
-- **yes** → loop back to Step 2
+- **yes** → loop back to Step 3
 - **done** → complete
-
-Two loops is normal. Rarely need more.
 
 ---
 
 ## Optional Extensions
 
-- **Playwright rendering** — Load live URL for visual verification between fix rounds
-- **Before/after screenshots** — Desktop + mobile comparison
-- **Commit changes** — Stage and commit modified files after completion
+- **Before/after screenshots** — Desktop + mobile comparison via Playwright
+- **Performance comparison** — Load timing before vs after
+- **Commit changes** — Stage and commit modified files
 
 ---
 
