@@ -1,151 +1,102 @@
 ---
 name: prospect-audit
-description: "Audit any website and generate a business-language analysis with specific findings and actionable recommendations"
+description: "Audit any website and generate a business-language analysis with actionable recommendations"
 ---
 
-# /prospect-audit -- Website Analysis for Business Decisions
+# /prospect-audit — Website Analysis for Business Decisions
 
-**Scope:** This skill is READ-ONLY. It never edits code, modifies files on the target site, or deploys anything. It produces a single analysis document.
+Read-only analysis. Never edits code or deploys anything.
 
-**Usage:** `/prospect-audit [url]`
+```
+/prospect-audit [url-or-file]
+```
 
 ## Use Cases
 
-- **Sales prospecting** -- Analyze a prospect's site before cold outreach. The brief gives you specific talking points no generic email could have.
-- **Self-audit** -- Point it at your own site. The business-language framing helps you see your site through your customers' eyes, not a developer's.
-- **Client reporting** -- Run it on a client's site before or after a project. "Here's what we found" or "Here's what we fixed."
-- **Competitive analysis** -- Audit a competitor's site to understand their strengths and weaknesses.
+- **Sales prospecting** — Specific talking points no generic email could have
+- **Self-audit** — See your site through your customers' eyes
+- **Client reporting** — "Here's what we found" or "Here's what we fixed"
+- **Competitive analysis** — Understand a competitor's strengths and weaknesses
 
 ---
 
-## Phase 0: Guard
+## Core (Impeccable)
 
-1. Confirm the URL is provided. If missing, ask for it.
-2. Load the URL via Playwright (`browser_navigate`).
-3. If the page fails to load (404, timeout, SSL error, WAF block, connection refused): report the specific error and **abort**. Do not guess or proceed with partial data.
+### Step 1: Context
 
----
+Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first or copy from `config/examples/`.
 
-## Context Swap: Impeccable Design Context
+### Step 2: Diagnose
 
-Before running `/audit` or `/critique`, check if `.impeccable.md` exists at the project root.
+Run on the target page or file:
 
-- **If it exists:** Impeccable will use it automatically. No action needed.
-- **If it does NOT exist:** Copy from `config/examples/marketing-site.md` or run `/teach-impeccable` to generate one. This file provides the design context Impeccable needs to produce meaningful critiques.
+1. `/audit` — accessibility, performance, theming, responsive, anti-patterns
+2. `/critique` — visual hierarchy, information architecture, emotional resonance
 
----
+### Step 3: Generate Brief
 
-## Phase 1: Load
-
-1. Navigate to the URL and wait for the page to fully render (network idle or 5s timeout).
-2. Take a full-page screenshot for reference.
-3. Note any redirect chains (e.g., `http -> https`, `www -> non-www`).
+Synthesize audit + critique findings into the brief template below.
 
 ---
 
-## Phase 2: Diagnose
+## Brief Template
 
-### Run Impeccable commands
-
-1. Run `/audit` -- captures layout, accessibility, performance, and standards compliance.
-2. Run `/critique` -- captures design quality, visual hierarchy, and UX issues.
-
-**Recommendation Loop:** See [_recommendation-loop.md](./_recommendation-loop.md) for the shared engine — finding-to-command mapping, synthesis logic, and presentation format. In prospect-audit, this mapping is used to categorize findings for the sales brief, NOT to run fixes.
-
-### Gather additional signals via Playwright
-
-Collect the following from the live page:
-
-| Signal | How |
-|--------|-----|
-| Page title | `document.title` |
-| Meta description | `<meta name="description">` |
-| Open Graph tags | `og:title`, `og:description`, `og:image` |
-| Schema.org markup | Any `<script type="application/ld+json">` |
-| Font stack | Computed font-family on `body` and `h1` |
-| H1 content | First `<h1>` text |
-| Images without alt | Count of `<img>` elements with empty or missing `alt` |
-| Console errors | Any JS errors logged during page load |
-| Load time | Navigation timing (domContentLoaded, load event) |
-| Mobile touch targets | Buttons/links smaller than 44x44px |
-| Horizontal overflow | Whether `document.body.scrollWidth > window.innerWidth` |
-
----
-
-## Phase 3: Generate the Sales Intelligence Brief
-
-### CRITICAL FRAMING RULE
+### Framing Rule
 
 **Write for the business owner, NOT for a developer.**
-
-The owner of a restaurant, dental practice, or hair salon does not care about
-jQuery conflicts, WCAG AA, or touch target pixel sizes. They care about:
-losing customers, looking unprofessional, being invisible on Google,
-and competitors beating them.
 
 Every finding must answer: **"What does this cost me in customers or money?"**
 
 | BAD (developer speak) | GOOD (business impact) |
 |-----------------------|----------------------|
-| "7 of 8 images missing alt text, fails WCAG AA accessibility standards" | "Google can't read your images -- you're invisible for local searches like 'dentist near me'" |
-| "10 JavaScript console errors ($ is not a function)" | "Your scroll animations are broken -- visitors see a static page instead of the polished experience you paid for" |
-| "No meta description tag found" | "When someone Googles you, Google writes its own summary instead of showing YOUR message" |
-| "CLS score 0.42, above 0.1 threshold" | "Your page jumps around while loading -- visitors think something is broken and leave" |
+| "7/8 images missing alt text, fails WCAG AA" | "Google can't read your images — you're invisible for local searches" |
+| "10 JavaScript console errors" | "Your animations are broken — visitors see a static page" |
+| "No meta description tag" | "When someone Googles you, they see a random snippet instead of your message" |
+| "CLS score 0.42" | "Your page jumps around while loading — visitors think it's broken" |
 
-### Brief Template
-
-Generate the brief using this structure. The language MUST match the prospect's locale (see Localization below).
+### Output Format
 
 ```markdown
 ## Website Analysis: [domain]
 
 ### What's Costing You Customers
-- [2-3 problems framed as LOST BUSINESS or LOST TRUST]
-- Always explain the CONSEQUENCE, not the technical cause
-- Lead with the impact: "You're losing X because Y" not "Y is misconfigured"
+- [2-3 problems as LOST BUSINESS or LOST TRUST]
+- Lead with the impact, not the technical cause
 
 ### What We'd Improve
-- [3-5 specific improvements, framed as OUTCOMES not tasks]
-- Lead with the RESULT: "Make Google show your business properly" not "Add meta description"
-- Be specific: reference actual content, pages, or elements from the site
+- [3-5 improvements as OUTCOMES]
+- "Make Google show your business properly" not "Add meta description"
 
 ### What Caught Our Eye
-- [3-4 POSITIVE observations that prove we actually looked at their site]
-- Reference specific content, design choices, or elements BY NAME
-- Always include at least one genuine compliment about their business or brand
-- This section builds trust -- it shows this isn't a generic template
+- [3-4 POSITIVE observations referencing specific content by name]
+- Always include at least one genuine compliment
 
-### Technical Details (internal -- do NOT send to client)
-- [Raw /audit and /critique findings for your reference]
-- Scores, metrics, specific errors, element selectors
-- This section is for your team only -- never include it in outreach
+### Technical Details (internal — do NOT send to client)
+- [Raw /audit and /critique findings]
 ```
 
-### Writing Rules
+### Rules
 
-1. **No jargon in client-facing sections.** Terms like "CLS", "LCP", "WCAG", "viewport", "DOM" belong only in the Technical Details section.
-2. **Be specific, not generic.** Reference their actual business name, services, images, and content. A brief that could apply to any website is worthless.
-3. **Max 3 items per section** (except Technical Details). Prioritize by business impact.
-4. **Positive section is mandatory.** Never produce an all-negative brief. If the site is genuinely well-made, say so and focus the improvements on smaller optimizations.
-
----
-
-## Phase 4: Save and Next Steps
-
-1. Save the brief to a file. Suggested path: `clients/<domain>/analysis_YYYY-MM-DD.md`
-   - If the `clients/` directory does not exist, ask the user where to save.
-2. Display the client-facing sections (everything except Technical Details) in the chat.
-3. Offer: **"Want me to draft an outreach email using these findings?"**
+1. No jargon in client-facing sections (CLS, WCAG, DOM → Technical Details only)
+2. Reference their actual business, content, images by name
+3. Max 3 items per section (except Technical Details)
+4. Positive section is mandatory
 
 ---
 
-## Localization
+## Optional Extensions
 
-The brief MUST match the prospect's language and locale:
+These are NOT part of the core analysis. Use when deeper data is needed.
 
-- If the site is in German, write the brief in German.
-- If the site is in French, write in French.
-- If the site is in Spanish, write in Spanish.
-- Default to English if the language is unclear or mixed.
+- **Playwright deep dive** — Load live URL, extract: meta tags, OG tags, Schema.org, font stack, console errors, load timing, touch targets, overflow
+- **SEO analysis** — Title quality, heading hierarchy, canonical URLs, robots.txt, sitemap
+- **Performance analysis** — Core Web Vitals, resource count, transfer size, render-blocking resources
+- **Sales brief formatting** — Localize to site language, draft outreach email from findings
 
-Detect language from: `<html lang="">`, visible page content, or meta tags. When in doubt, ask the user.
+---
+
+## Save
+
+1. Save brief to `clients/<domain>/analysis_YYYY-MM-DD.md` (or ask where)
+2. Display client-facing sections in chat
+3. Offer next steps (outreach email, `/improve` to fix, `/compare` vs competitor)

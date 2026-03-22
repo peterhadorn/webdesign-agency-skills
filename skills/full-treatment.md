@@ -5,233 +5,106 @@ description: "Run all Impeccable design commands in optimal order — full desig
 
 # /full-treatment — Complete Impeccable Design Treatment
 
-> Load + Guard → Baseline + Diagnose → Sequential Treatment with Check-ins → Results Comparison → Deploy/Commit
-
-## Invocation
+Run all 15 treatment commands in optimal order with smart skip and check-ins.
 
 ```
 /full-treatment [url-or-file]
-
-Accepts:
-  - Live URL: https://example.com
-  - Local file: src/index.html, app/page.tsx, etc.
 ```
 
 ---
 
-## Phase 0: Load + Guard
+## Core (Impeccable)
 
-### 0.1 Context Swap
+### Step 1: Context
 
-Check whether `.impeccable.md` exists in the project root.
-- If it exists: load it as the design context for all subsequent commands.
-- If missing: run `/teach-impeccable` first to generate it, then proceed.
+Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first.
 
-### 0.2 Load Target
+### Step 2: Diagnose
 
-- **URL**: Load via Playwright. Wait for network idle.
-- **Local file**: Open via Playwright (`file://` protocol) or the appropriate dev server.
+1. `/audit` — save scores as baseline + findings for smart skip
+2. `/critique` — save findings for smart skip
 
-If the page fails to render (timeout, 404, JS crash): report the error and **ABORT**.
-
-### 0.3 Before Screenshots
-
-Take baseline screenshots at two viewports:
-- **Desktop**: 1440px width
-- **Mobile**: 375px width
-
-Save as reference for Phase 3 comparison.
-
----
-
-## Phase 1: Diagnose
-
-### 1.1 Run /audit
-
-Run the Impeccable `/audit` command on the rendered page. Save ALL scores and findings as the baseline. This serves double duty: baseline metrics AND the diagnostic findings report that drives smart-skip logic in Phase 2.
-
-### 1.2 Run /critique
-
-Run the Impeccable `/critique` command for a full UX critique. Save all findings categorized by issue type.
-
-### 1.3 Present Combined Findings
-
-Summarize the combined findings from `/audit` and `/critique`:
+Present combined summary:
 
 ```
-## Diagnosis: [target]
+## Diagnosis
 
-### Audit Scores (Baseline)
-- Accessibility: [score]
-- Performance: [score]
-- Anti-patterns: [pass/fail]
-- Issues found: [N]
+Audit: [scores]
+Critique: [top issues]
 
-### Critique Highlights
-- [Top 3-5 most impactful issues, grouped by category]
+Steps that will run: [list]
+Steps that will skip: [list with reason]
 
-### Treatment Plan
-- Steps that will run: [list based on findings]
-- Steps that will be skipped: [list with reason]
-
-Starting full treatment. I'll check in after each step.
+Starting treatment.
 ```
 
----
+### Step 3: Treatment
 
-## Phase 2: Treatment (Sequential, with Check-ins)
+15 steps in order. **Structure before style, resilience before personality, polish last.**
 
-Run each step in order. Between every step, pause for the user.
-
-### Treatment Order
-
-The order is deliberate: **structure before style, resilience before personality, polish last.**
-
-<!--
-Rationale:
-1.  distill   — strip complexity first (reduces work for all subsequent steps)
-2.  arrange   — fix spatial structure (layout must be correct before styling)
-3.  typeset   — fix typography hierarchy (depends on clean layout)
-4.  colorize  — add strategic color (depends on typography being set)
-5.  normalize — align to design system (reconcile after structural changes)
-6.  clarify   — fix copy/labels (content depends on structure being stable)
-7.  onboard   — empty states, first-time UX (content-dependent)
-8.  harden    — error handling, edge cases (functional layer)
-9.  adapt     — responsive breakpoints (must come after layout/typography/color)
-10. optimize  — performance (don't optimize until design is stable)
-11. animate   — purposeful motion (add after layout is final)
-12. delight   — moments of joy (personality layer, near-end)
-13. bolder/quieter — intensity adjustment (near-final calibration)
-14. overdrive — technically ambitious effects (optional, after everything else works)
-15. polish    — always last (final sweep catches anything remaining)
--->
-
-| Step | Command | After completion, say: |
-|------|---------|------------------------|
-| 1 | `/distill` | "Stripped [X] unnecessary elements. Continue?" |
-| 2 | `/arrange` | "Fixed layout and spacing. Continue?" |
-| 3 | `/typeset` | "Improved typography hierarchy. Continue?" |
+| Step | Command | After completion |
+|------|---------|-----------------|
+| 1 | `/distill` | "Stripped [X]. Continue?" |
+| 2 | `/arrange` | "Fixed layout/spacing. Continue?" |
+| 3 | `/typeset` | "Improved typography. Continue?" |
 | 4 | `/colorize` | "Added strategic color. Continue?" |
 | 5 | `/normalize` | "Aligned to design system. Continue?" |
-| 6 | `/clarify` | "Improved copy and labels. Continue?" |
-| 7 | `/onboard` | "Improved empty/first-time states. Continue?" |
-| 8 | `/harden` | "Added error handling for edge cases. Continue?" |
+| 6 | `/clarify` | "Improved copy/labels. Continue?" |
+| 7 | `/onboard` | "Improved empty states. Continue?" |
+| 8 | `/harden` | "Added error handling. Continue?" |
 | 9 | `/adapt` | "Fixed responsive issues. Continue?" |
 | 10 | `/optimize` | "Improved performance. Continue?" |
-| 11 | `/animate` | "Added purposeful motion. Continue?" |
-| 12 | `/delight` | "Added personality and delight. Continue?" |
-| 13 | `/bolder` OR `/quieter` | Ask the user which direction, or offer to skip |
-| 14 | `/overdrive` | "Added technically ambitious effects. Continue?" (or skip) |
-| 15 | `/polish` | "Final polish pass complete." |
+| 11 | `/animate` | "Added motion. Continue?" |
+| 12 | `/delight` | "Added personality. Continue?" |
+| 13 | `/bolder` OR `/quieter` | Ask direction, or skip |
+| 14 | `/overdrive` | Optional — ask before running |
+| 15 | `/polish` | "Final pass complete." (ALWAYS runs) |
 
-### Check-in Behavior
+**Check-ins:** After each step, user responds:
+- `y` / `continue` → next step
+- `skip` → skip this step
+- `stop` → jump to results
+- Feedback → address it, then continue
+- Command name → force-run a skipped step
 
-After each step, wait for the user. They can respond:
+**Smart skip:** If BOTH audit AND critique found zero issues for a step's category, auto-skip:
+> "No typography issues found — skipping /typeset. Type `/typeset` to force-run."
 
-| Response | Action |
-|----------|--------|
-| `y`, `yes`, `continue` | Proceed to the next step |
-| `skip` | Skip the current step (if not yet run) or the next step |
-| `stop` | Halt the treatment, jump directly to Phase 3 (Results) |
-| Specific feedback | Address the feedback, then ask "Continue?" again |
-| A command name (e.g., `/colorize`) | Force-run that specific step, even if it was going to be skipped |
+Category mapping: see [_recommendation-loop.md](./_recommendation-loop.md)
 
-### Smart Skip Logic
+### Step 4: Results
 
-Before each step, check whether BOTH `/audit` AND `/critique` found issues in that step's category. If neither diagnostic found relevant issues for a category, announce the skip:
+Run `/audit` again. Compare:
 
-> "No [category] issues found in audit or critique — skipping /[command]. Type `/[command]` to force-run."
+```
+## Results
 
-The user can always override a skip by typing the command name.
+| Metric | Before | After | Delta |
+|--------|--------|-------|-------|
+| A11y   | [X]    | [Y]   | [+/-] |
+| Perf   | [X]    | [Y]   | [+/-] |
+| Issues | [N]    | [M]   | [-Z]  |
 
-### Finding-to-Category Mapping
-
-**Recommendation Loop:** See [_recommendation-loop.md](./_recommendation-loop.md) for the shared engine — finding-to-command mapping, synthesis logic, and presentation format.
-
-Use that mapping to determine which categories have findings. Additional rule for full-treatment: **Step 15 (`/polish`) ALWAYS runs — never skipped.**
-
-### Step 13 Special Handling
-
-Step 13 requires a direction choice. Present:
-
-> "Step 13: Intensity adjustment. Options:
-> - `/bolder` — make the design more confident and striking
-> - `/quieter` — tone down noise, reduce visual intensity
-> - `skip` — leave intensity as-is
->
-> Which direction?"
-
-### Step 14 Special Handling
-
-Step 14 (`/overdrive`) is optional and adds technically ambitious effects (advanced CSS, canvas, WebGL, etc.). Before running:
-
-> "Step 14: /overdrive adds technically ambitious effects. This is optional and may increase complexity. Run it? (y/skip)"
-
----
-
-## Phase 3: Results
-
-### 3.1 Post-Treatment Audit
-
-Run `/audit` again on the treated page. Record all scores.
-
-### 3.2 After Screenshots
-
-Take screenshots at the same viewports as Phase 1:
-- **Desktop**: 1440px width
-- **Mobile**: 375px width
-
-### 3.3 Present Comparison
-
-```markdown
-## Full Treatment Results: [target]
-
-| Metric         | Before | After | Delta |
-|----------------|--------|-------|-------|
-| A11y score     | [X]    | [Y]   | [+/-] |
-| Performance    | [X]    | [Y]   | [+/-] |
-| Anti-patterns  | [P/F]  | [P/F] |       |
-| Issues found   | [N]    | [M]   | [-Z]  |
-
-### Steps Applied
-[numbered list of steps that ran]
-
-### Steps Skipped
-[list with reason: "no issues found" or "user skipped" or "user stopped"]
-
-### Before vs After
-Desktop: [before screenshot] vs [after screenshot]
-Mobile:  [before screenshot] vs [after screenshot]
+Steps applied: [list]
+Steps skipped: [list]
 ```
 
 ---
 
-## Phase 4: Deploy (if applicable)
+## Optional Extensions
 
-### 4.1 Local Files
-
-If working on local source files, offer to commit the changes:
-
-> "Treatment complete. Commit changes?"
-
-Wait for explicit user approval before committing.
-
-### 4.2 Live Site
-
-If working against a live URL, note that changes were made to local source files only:
-
-> "Changes applied to local source files. Deploy to your hosting environment when ready."
+- **Playwright rendering** — Load live URL, take before/after screenshots at 1440px + 375px
+- **Visual comparison** — Side-by-side desktop + mobile screenshots
+- **Commit changes** — Stage and commit after treatment
 
 ---
 
-## Commands NOT in the Treatment Sequence
+## Commands NOT in Treatment
 
-These Impeccable commands are used outside the 15-step treatment and should not be confused with treatment steps:
-
-| Command | Role | When Used |
-|---------|------|-----------|
-| `/audit` | Diagnostic input | Phase 1 (baseline) and Phase 3 (comparison) |
-| `/critique` | Diagnostic input | Phase 1 (findings report) |
-| `/teach-impeccable` | One-time setup | Phase 0 (if design context missing) |
-| `/frontend-design` | Full page builds | Used for complete rebuilds, not incremental treatment |
-| `/extract` | Component extraction | Post-treatment if needed, not part of the quality pass |
+| Command | Role |
+|---------|------|
+| `/audit` | Diagnostic (Step 2 + Step 4) |
+| `/critique` | Diagnostic (Step 2) |
+| `/teach-impeccable` | One-time setup |
+| `/frontend-design` | Full rebuilds, not incremental |
+| `/extract` | Post-treatment refactoring |
