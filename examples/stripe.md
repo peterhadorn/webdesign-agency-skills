@@ -2,86 +2,63 @@
 
 ### What's Costing You Customers
 
-1. **86% of your images are invisible to search engines and screen readers.** 31 out of 36 images on the homepage have no descriptive text. Google cannot index what it cannot read, and the 15-20% of visitors using assistive technology get a blank experience. Every missing image description is a missed chance to rank and a visitor who bounces because the page feels broken.
+- **86% of your images are invisible to search engines and screen readers.** 31 out of 36 images on your homepage have no description. Google cannot index what it cannot read, and the 15-20% of visitors using assistive technology (screen readers, slow connections showing alt text) get a broken experience. Every invisible image is a missed chance to rank and convert.
 
-2. **80% of your clickable elements are too small to tap on a phone.** 146 of 183 buttons and links fail the 44x44px minimum touch target standard. On mobile -- where the majority of web traffic now originates -- visitors misclick, get frustrated, and leave. Each failed tap is a potential signup that walks away.
+- **73% of your clickable elements are too small for mobile users.** 146 out of 201 buttons and links fail the minimum touch target size. On phones -- where the majority of web traffic happens -- visitors are mis-tapping, getting frustrated, and leaving before they reach your "Get started" button. That is real revenue walking away.
 
-3. **There is no way for keyboard-only users to skip to content.** 182 focusable elements lack visible focus indicators, and there is no skip-navigation link. Power users, accessibility-dependent visitors, and anyone navigating without a mouse must tab through the entire navigation before reaching any content. Many will give up before they get to "Start now."
+- **There is no way to skip your navigation with a keyboard.** Visitors using keyboards (accessibility needs, power users, anyone with a broken trackpad) must tab through every single navigation item before reaching your content. Many will give up. This also fails a basic web accessibility compliance requirement (WCAG 2.4.1), which carries legal exposure in the US and EU.
 
 ### What We'd Improve
 
-1. **Add alt text to all 31 unlabeled images** -- this alone could improve organic search visibility and ensure every visitor understands your value proposition, regardless of how they browse. Expected impact: better image search rankings and compliance with WCAG 2.1 AA.
+1. **Add descriptions to every image** -- especially the product screenshots and customer logos. This directly improves search engine visibility and makes the site usable for all visitors. Estimated impact: better image search rankings and ADA compliance.
 
-2. **Increase all touch targets to at least 44x44px** -- particularly the navigation links, footer links, and inline CTAs. This would reduce mobile bounce rates and increase conversion on the "Start now" and "Contact sales" buttons where it matters most.
+2. **Increase touch target sizes on mobile** -- buttons and links need to be at least 44x44 pixels. This is a one-time CSS change that immediately reduces mobile bounce rates. Visitors who can actually tap what they want are visitors who convert.
 
-3. **Add skip-navigation and visible focus indicators** -- a single hidden-until-focused "Skip to main content" link and consistent focus outlines would make the entire site navigable for keyboard users. This is a low-effort change with outsized accessibility impact.
+3. **Add keyboard skip navigation** -- a single hidden link that lets keyboard users jump past the menu. Standard practice for any site that cares about accessibility compliance. Takes an hour to implement, eliminates a category of legal risk.
 
-4. **Fix the duplicate H1 heading** -- two identical H1 tags ("Financial infrastructure to grow your revenue") confuse search engine crawlers about the page's primary topic. One clear H1 per page is the standard for SEO.
+4. **Fix the duplicate page title (H1)** -- the main heading is rendered twice in the code. Search engines get confused when a page has two identical titles. Consolidating to one clean H1 improves how Google understands and ranks the page.
 
-5. **Reduce the lang attribute precision** -- the page declares `en-MX` (English-Mexico) which may cause search engines and screen readers to apply unexpected regional processing. For a global audience, `en` is more appropriate unless the content is specifically localized for Mexico.
+5. **Reduce decision fatigue in the hero** -- "Get started" and "Sign up with Google" and "Contact sales" all compete for attention above the fold. Testing a single primary call-to-action could lift conversion rates, with secondary options available but visually quieter.
 
 ### What Caught Our Eye
 
-1. **The "1.62% of global GDP" live counter is brilliant.** This is not a static stat -- it ticks in real time. It communicates scale and credibility in a way that no case study paragraph ever could. Visitors immediately understand: "This is infrastructure the world depends on."
+- **The social proof is outstanding.** OpenAI, Amazon, Nvidia, Google, Shopify, Uber, Anthropic -- this is arguably the strongest customer logo bar on the internet. The scrolling carousel format keeps it dynamic without feeling like a static wall. It immediately communicates credibility at the highest level.
 
-2. **The case study selection is genuinely impressive.** Hertz, URBN ($5B consolidated), Instacart, Le Monde, Lovable, ElevenLabs ($3B valuation), Supabase (150 countries) -- these are not filler logos. Each one names a specific business outcome with a dollar figure or metric. This is social proof done right.
+- **The "1.62% of Global GDP" stat is a power move.** Leading with a single metric that quantifies scale is more persuasive than any paragraph of copy could be. It answers "why should I trust you?" before the visitor even asks.
 
-3. **The visual design is distinctly Stripe, not AI slop.** Custom "sohne-var" typography, the signature purple-indigo palette, the parallelogram motif woven into photography (intersection crosswalks, boutique windows, delivery bags forming the logo shape) -- this is clearly the work of an in-house design team with a strong brand system. No gradient text, no glassmorphism, no generic card grids.
+- **Mobile adaptation is genuinely good.** The layout reflows cleanly at 375px -- stacked CTAs, clean hamburger menu, readable typography. The hero gradient and headline maintain their impact on small screens. Most enterprise sites butcher their mobile experience; this one holds up.
 
-4. **The page structure guides decision-making intelligently.** The flow moves from "what we do" (payments, billing, issuing, crypto) to "who trusts us" (enterprise case studies) to "how to start" (three clear paths: no-code, pre-integrated, or build your own). Each section answers the next logical question a visitor would ask.
+- **The customer stories are specific and credible.** "Hertz: 160 countries, 11K+ locations" and "URBN: $5 billion in revenue onto Stripe" -- these are not vague testimonials. They name real companies with real numbers, organized by segment (enterprise, startup, platform). This builds trust because it shows results, not promises.
 
 ### Technical Details (internal)
 
-#### Audit Findings
+**Audit Metrics (automated scan):**
 
-**Anti-Patterns Verdict: PASS.** This is not AI-generated design. Custom typeface (sohne-var), unique parallelogram photography concept, minimal third-party script bloat (only b.stripecdn.com + stripe.com domains), and a clear brand system throughout.
+| Check | Result | Severity |
+|-------|--------|----------|
+| Skip links | 0 found | Critical (WCAG 2.4.1) |
+| Images without alt text | 31/36 (86%) | Critical (WCAG 1.1.1) |
+| Empty links (no text or aria-label) | 28/172 | High |
+| Duplicate H1 elements | 2 (identical content) | Medium |
+| Touch targets < 44px | 146/201 (73%) | High |
+| Lazy-loaded images | 35/36 | Good |
+| Landmark elements | main, nav, footer present | Good |
+| Viewport meta | Properly configured with viewport-fit=cover | Good |
+| HTML lang | en-MX (geo-redirected) | Low |
+| TTFB | 750ms | Medium |
+| DOM Content Loaded | 1038ms | Medium |
+| Full page load | 1424ms | Acceptable |
+| Total headings | 48 (hierarchy generally sound) | Good |
+| Form inputs | 0 (no forms on homepage) | N/A |
 
-**Severity Summary:**
-- Critical: 1 (images missing alt text -- 31/36)
-- High: 3 (touch targets, focus indicators, skip navigation)
-- Medium: 3 (duplicate H1, lang attribute, console errors)
-- Low: 2 (unloaded SourceCodePro font, hero stat text contrast)
+**Anti-Patterns Verdict: PASS.** This does not look AI-generated. The gradient color treatment is distinctive and branded (not the generic cyan-on-dark AI palette). Typography choices feel intentional. The layout breaks from rigid card grids with varied section compositions. The "Book of the week" section is genuinely unusual -- no AI would add that to a payments homepage.
 
-**Detailed Issues:**
+**Critique Notes:**
 
-| # | Severity | Category | Issue | WCAG |
-|---|----------|----------|-------|------|
-| 1 | Critical | Accessibility | 31/36 images missing alt text, none marked role="presentation" | 1.1.1 (A) |
-| 2 | High | Responsive | 146/183 interactive elements below 44x44px touch target | 2.5.5 (AAA) |
-| 3 | High | Accessibility | 182 focusable elements with outline:none, no visible focus indicators | 2.4.7 (AA) |
-| 4 | High | Accessibility | No skip-navigation link | 2.4.1 (A) |
-| 5 | Medium | SEO | Duplicate H1 tags (2 identical H1 elements) | N/A |
-| 6 | Medium | Accessibility | lang="en-MX" may cause regional screen reader behavior | 3.1.1 (A) |
-| 7 | Medium | Performance | 3 console errors (Google tracking pixel, LinkedIn pixel failures) | N/A |
-| 8 | Low | Performance | SourceCodePro font declared but status "unloaded" (unnecessary network request) | N/A |
-| 9 | Low | Accessibility | Stats text rgb(100,116,141) on transparent bg -- contrast borderline at 14px | 1.4.3 (AA) |
-
-**Positive Findings:**
-- All 35 non-hero images use `loading="lazy"` -- excellent performance practice
-- Proper semantic landmarks (header, main, nav, footer, sections)
-- All form inputs have associated labels (0 unlabeled inputs)
-- Viewport meta tag properly configured with viewport-fit=cover
-- No layout-animating CSS transitions detected (good performance)
-- Minimal third-party script footprint (2 external domains only)
-- Zero animations on layout properties (width/height/top/left)
-
-#### Critique Findings
-
-**Anti-Patterns Verdict: PASS.** Stripe's homepage is one of the strongest brand-designed pages on the web. Zero AI slop tells.
-
-**Overall Impression:** A masterclass in enterprise SaaS homepage design. The page earns trust through specific numbers (not vague claims), demonstrates breadth through real customer outcomes (not logo walls), and funnels visitors through three clear decision paths. The single biggest opportunity is accessibility -- the design excellence is undermined by mechanical a11y gaps that are straightforward to fix.
-
-**What's Working:**
-1. **Information architecture flows like a sales conversation.** Problem > proof > solution > how-to-start. No dead-end sections.
-2. **Social proof is specific and verifiable.** "$5 billion consolidated" and "65% decrease in support costs" are claims you can check. This builds trust.
-3. **The CTA strategy is well-layered.** "Start now" (self-serve) and "Contact sales" (enterprise) appear at natural decision points, not shoved into every section.
-
-**Priority Design Issues:**
-1. **The mobile experience is compromised by touch target sizes.** 80% of interactive elements are too small. This is the gap between "looks beautiful" and "works beautifully."
-2. **No visible keyboard navigation path.** A design-conscious site should have design-conscious focus states, not just suppress them.
-3. **The footer is a product catalog, not a navigation aid.** 30+ product links in the footer create choice paralysis rather than guiding visitors.
-
-**Questions to Consider:**
-- Could the footer be restructured into 4-5 clear categories instead of a flat list of 30+ products?
-- What if focus states used Stripe's signature purple instead of being hidden?
-- The "Book of the week" section is charming but potentially confusing for first-time visitors looking for payment infrastructure -- is it earning its placement?
+- Hero heading is technically too long -- the subheading ("Accept payments, offer financial services...") is crammed inside the H1 tag rather than being a separate paragraph. Screen readers announce the entire block as a single heading.
+- Customer logo carousel duplicates all entries (OpenAI, Amazon, Nvidia, Ford etc. appear twice in the DOM) -- standard infinite scroll technique, but the empty alt text means screen readers encounter unlabeled images.
+- The "Flexible solutions" section uses interactive buttons styled as tabs, but their affordance as clickable tabs is weak -- they look like static headings until hovered.
+- Page length is extreme (48 headings across enterprise/startup/platform sections). A visitor scanning quickly may never reach the platform or developer sections.
+- The "Book of the week" / Stripe Press section is charming but off-brand for a visitor evaluating payment infrastructure. It signals culture, not product value.
+- "Join us at Sessions" event promo (April 29-30, 2026, Moscone West) is time-sensitive content that will need removal/update post-event.
+- Performance is acceptable but TTFB of 750ms is high for a globally CDN-served page; likely due to geo-detection and redirect logic (stripe.com -> stripe.com/en-mx).
