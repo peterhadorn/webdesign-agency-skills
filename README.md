@@ -6,7 +6,7 @@ Orchestration layer for [Impeccable](https://github.com/pbakaus/impeccable). Cha
 
 Impeccable gives you 20 design commands (`/audit`, `/critique`, `/typeset`, `/colorize`, etc.). These workflows handle the orchestration: which commands to run, in what order, how to synthesize findings, and how to present results.
 
-Four skills. One shared engine. Plain Markdown — no runtime, no dependencies.
+Two skills. One shared engine. Plain Markdown — no runtime, no dependencies.
 
 ## Skills
 
@@ -63,38 +63,6 @@ Adapts to the site's language automatically.
 - Load time: 2.5s
 ````
 
-### `/full-treatment`
-
-Run all 15 Impeccable commands in optimal order with before/after comparison.
-
-```
-/full-treatment https://example.com
-```
-
-| Step | Command | What It Fixes |
-|------|---------|---------------|
-| 1 | `/distill` | Strip unnecessary complexity |
-| 2 | `/arrange` | Layout and spacing |
-| 3 | `/typeset` | Typography hierarchy |
-| 4 | `/colorize` | Strategic color |
-| 5 | `/normalize` | Design system alignment |
-| 6 | `/clarify` | Copy and label clarity |
-| 7 | `/onboard` | Empty states, first-time UX |
-| 8 | `/harden` | Error handling, edge cases |
-| 9 | `/adapt` | Responsive breakpoints |
-| 10 | `/optimize` | Performance |
-| 11 | `/animate` | Purposeful motion |
-| 12 | `/delight` | Personality |
-| 13 | `/bolder` or `/quieter` | Intensity calibration |
-| 14 | `/overdrive` | Technically ambitious effects (optional) |
-| 15 | `/polish` | Final sweep (always runs) |
-
-Order is deliberate: structure before style, resilience before personality, polish last.
-
-**Smart skip**: Steps auto-skip when audit + critique found zero issues in that category. Force-run any step by typing the command name.
-
-**Check-ins**: Pauses after each step. Continue, skip, stop, or give feedback.
-
 ### `/improve`
 
 Targeted improvement loop. Diagnose, recommend, fix only what's needed.
@@ -110,24 +78,9 @@ Targeted improvement loop. Diagnose, recommend, fix only what's needed.
 5. Runs selected commands, then `/polish`
 6. Offers to re-check with another audit
 
-### `/compare`
-
-Side-by-side comparison of two URLs. Audits both, presents a structured diff.
-
-```
-/compare https://your-site.com https://competitor.com
-```
-
-Use cases:
-- Your site vs. a competitor
-- Before vs. after a redesign
-- Two design approaches for the same project
-
-Outputs a score comparison table, where each site wins, key differences, and a recommendation.
-
 ## The Recommendation Loop
 
-Shared engine across all four skills. See [`skills/_recommendation-loop.md`](skills/_recommendation-loop.md) for the full reference.
+Shared engine across both skills. See [`skills/_recommendation-loop.md`](skills/_recommendation-loop.md) for the full reference.
 
 ```
 /audit          → technical findings

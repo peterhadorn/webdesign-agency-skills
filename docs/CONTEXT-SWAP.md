@@ -23,7 +23,7 @@ config/
 cp config/marketing.impeccable.md .impeccable.md
 ```
 
-3. **The workflow skills handle this automatically.** When using `/prospect-audit`, `/improve`, or `/full-treatment`, the skill checks for context and swaps or prompts you to create one.
+3. **The workflow skills handle this automatically.** When using `/prospect-audit` or `/improve`, the skill checks for context and swaps or prompts you to create one.
 
 ## Creating Context
 
