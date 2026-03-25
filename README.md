@@ -116,4 +116,4 @@ These are Markdown skill files: structured instructions that tell the AI to invo
 
 ## License
 
-MIT
+Apache 2.0
