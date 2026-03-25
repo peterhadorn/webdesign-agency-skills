@@ -8,7 +8,7 @@ description: "Audit any website and generate a business-language analysis with a
 Read-only analysis. Never edits code or deploys anything.
 
 ```
-/prospect-audit [url-or-file]
+/prospect-audit [url]
 ```
 
 ## Use Cases
@@ -20,22 +20,86 @@ Read-only analysis. Never edits code or deploys anything.
 
 ---
 
-## Core (Impeccable)
+## Step 0: Browser Check (first run only)
 
-### Step 1: Context
+This skill requires a browser to load and inspect live websites. Check if browser MCP tools are available:
+
+1. **Check for Playwright MCP** — look for tools like `mcp__playwright__browser_navigate`
+2. **Check for Chrome DevTools MCP** — look for tools like `mcp__chrome-devtools__navigate_page`
+
+**If neither is available**, stop and guide the user:
+
+```
+This skill needs a browser to inspect websites. You need at least one of:
+
+1. **Playwright MCP** (headless, best for automated audits):
+   claude mcp add playwright -- npx @playwright/mcp@latest
+
+2. **Chrome DevTools MCP** (controls your real browser, sees what you see):
+   Install the superpowers-chrome plugin:
+   claude plugin add superpowers-chrome
+
+Recommend installing both — Playwright for fast automated scans,
+Chrome DevTools for inspecting what the user actually experiences.
+
+Install one or both, then re-run /prospect-audit.
+```
+
+**If at least one is available**, proceed. Prefer Playwright for the initial page load (faster, headless). Use Chrome DevTools when you need to inspect the page as the user sees it (cookie banners, geo-specific content, logged-in states).
+
+---
+
+## Step 1: Context
 
 Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first or copy from `config/examples/`.
 
-### Step 2: Diagnose
+## Step 2: Load & Diagnose
 
-Run on the target page or file:
+1. Navigate to the URL via browser. Wait for full render.
+2. Run `/audit` — accessibility, performance, theming, responsive, anti-patterns
+3. Run `/critique` — visual hierarchy, information architecture, emotional resonance
+4. Gather additional signals from the live page:
+   - Page title, meta description, OG tags, Schema.org markup
+   - Font stack, H1 content, images without alt text
+   - Console errors, load timing
+   - Mobile touch targets, horizontal overflow
 
-1. `/audit` — accessibility, performance, theming, responsive, anti-patterns
-2. `/critique` — visual hierarchy, information architecture, emotional resonance
+## Step 3: Generate Brief
 
-### Step 3: Generate Brief
+Synthesize all findings into the brief using the rules below.
 
-Synthesize audit + critique findings into the brief using the rules below.
+---
+
+## Finding-to-Command Mapping
+
+Use this table to categorize audit + critique findings. In prospect-audit, the mapping is used to organize the brief — not to run fixes.
+
+| Finding Category | Maps to | What It Means |
+|-----------------|---------|---------------|
+| Typography issues (scale, hierarchy, line-height, font pairing) | `/typeset` | Type scale and font relationships need work |
+| Color/contrast issues (palette, contrast ratios, color harmony) | `/colorize` | Color system needs rebuilding or adjusting |
+| Layout/spacing issues (alignment, grid, whitespace, padding) | `/arrange` | Spatial relationships and layout structure are off |
+| Too bland, safe, or generic | `/bolder` | Design needs more confident choices |
+| Too noisy, aggressive, or cluttered | `/quieter` | Visual noise needs reducing |
+| Motion/animation gaps (no transitions, static interactions) | `/animate` | Purposeful motion is missing |
+| Copy/label clarity (confusing labels, vague CTAs, jargon) | `/clarify` | UI text needs rewriting for clarity |
+| Over-engineered (too many elements, unnecessary complexity) | `/distill` | Needs stripping to essentials |
+| Error handling/edge cases (empty states, loading, failures) | `/harden` | Not resilient to real-world conditions |
+| Performance issues (heavy assets, render blocking, layout shifts) | `/optimize` | Performance bottlenecks present |
+| Responsive breakpoints (broken on mobile/tablet, missing queries) | `/adapt` | Responsive behavior is broken |
+| Missing delight/personality (functional but forgettable) | `/delight` | Needs moments of personality |
+| Design system inconsistency (mixed patterns, one-off styles) | `/normalize` | Inconsistent component/token usage |
+| Onboarding/empty states (no guidance, blank screens, cold starts) | `/onboard` | First-run experience is missing |
+| Technically ambitious effects (3D, shaders, advanced CSS, scroll-driven) | `/overdrive` | Opportunity for standout technical moments |
+
+### Ambiguous Findings
+
+| Finding | Seems like | Actually | Why |
+|---------|-----------|----------|-----|
+| "Buttons look different on every page" | `/colorize` | `/normalize` | Consistency problem, not color problem |
+| "Too much whitespace" | `/arrange` | `/distill` if sparse, `/arrange` if spacing wrong | Check content density vs spacing values |
+| "Text is hard to read" | `/typeset` | `/colorize` if contrast, `/typeset` if scale/weight | Check what specifically makes it hard |
+| "Page feels slow" | `/optimize` | `/animate` if perceived, `/optimize` if measured | Check actual vs perceived performance |
 
 ---
 
@@ -115,20 +179,6 @@ If you can swap in any other business name and the compliment still works, it's 
 2. Reference their actual business, content, images by name
 3. Max 3 items per section (except Technical Details) — prioritize by business impact
 4. Positive section is mandatory — never produce an all-negative brief
-
----
-
-## Extras (conditional)
-
-Run these only when the diagnosis reveals a clear need:
-
-| Trigger | Extra |
-|---------|-------|
-| >3 console errors or broken interactions detected | Extract: console errors, load timing, font stack via Playwright |
-| No meta description, no OG tags, or no Schema.org | SEO check: title quality, heading hierarchy, canonical URLs, robots.txt, sitemap |
-| Load time >3s or large unoptimized images found | Performance check: Core Web Vitals, resource count, render-blocking resources |
-
-If no triggers fire, skip extras entirely.
 
 ---
 

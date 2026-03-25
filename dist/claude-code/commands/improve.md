@@ -13,13 +13,38 @@ Diagnose → recommend → fix → verify. Only runs what's needed.
 
 ---
 
-## Core (Impeccable)
+## Step 0: Browser Check (URL targets only)
 
-### Step 1: Context
+If the target is a URL (not a local file), check if browser MCP tools are available:
+
+1. **Check for Playwright MCP** — look for tools like `mcp__playwright__browser_navigate`
+2. **Check for Chrome DevTools MCP** — look for tools like `mcp__chrome-devtools__navigate_page`
+
+**If neither is available and the target is a URL**, stop and guide the user:
+
+```
+To improve a live URL, you need a browser MCP server:
+
+1. **Playwright MCP** (headless, best for automated audits):
+   claude mcp add playwright -- npx @playwright/mcp@latest
+
+2. **Chrome DevTools MCP** (controls your real browser):
+   claude plugin add superpowers-chrome
+
+Install one or both, then re-run /improve.
+
+Alternatively, pass a local file path instead — no browser needed.
+```
+
+**If the target is a local file**, skip this step entirely.
+
+---
+
+## Step 1: Context
 
 Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` first.
 
-### Step 2: Diagnose
+## Step 2: Diagnose
 
 Run on the target:
 
@@ -28,14 +53,17 @@ Run on the target:
 
 Save both reports. Do not fix anything yet.
 
-### Step 3: Recommend
+## Step 3: Recommend
 
-See [_recommendation-loop.md](./_recommendation-loop.md) for the shared engine.
+### Synthesize findings
 
-1. Map each finding to an Impeccable command
-2. Group by command, order by severity
-3. Check for conflicts (see Conflict Table below)
-4. Present to user:
+1. **Read** both audit and critique reports
+2. **Map** each finding to an Impeccable command using the table below
+3. **Deduplicate** — if audit and critique both flag the same issue, merge into one finding
+4. **Group** by command — if three issues all need `/typeset`, they become one item
+5. **Order** by severity: critical issues first, polish last
+6. **Check for conflicts** (see Conflict Table below)
+7. **Present** to user:
 
 ```
 ## Recommended Fixes
@@ -51,11 +79,38 @@ Run all? Or select which to apply:
 
 Wait for user selection.
 
-### Step 4: Fix
+### Finding-to-Command Mapping
+
+| Finding Category | Command | What It Does |
+|-----------------|---------|--------------|
+| Typography issues (scale, hierarchy, line-height, font pairing) | `/typeset` | Fix type scale and font relationships |
+| Color/contrast issues (palette, contrast ratios, color harmony) | `/colorize` | Rebuild or adjust color system |
+| Layout/spacing issues (alignment, grid, whitespace, padding) | `/arrange` | Fix spatial relationships and layout structure |
+| Too bland, safe, or generic | `/bolder` | Push the design toward more confident choices |
+| Too noisy, aggressive, or cluttered | `/quieter` | Reduce visual noise and create breathing room |
+| Motion/animation gaps (no transitions, static interactions) | `/animate` | Add purposeful motion and micro-interactions |
+| Copy/label clarity (confusing labels, vague CTAs, jargon) | `/clarify` | Rewrite UI text for clarity and action |
+| Over-engineered (too many elements, unnecessary complexity) | `/distill` | Strip to essentials, remove what doesn't earn its place |
+| Error handling/edge cases (empty states, loading, failures) | `/harden` | Add resilience for real-world conditions |
+| Performance issues (heavy assets, render blocking, layout shifts) | `/optimize` | Fix performance bottlenecks |
+| Responsive breakpoints (broken on mobile/tablet, missing queries) | `/adapt` | Fix responsive behavior across viewports |
+| Missing delight/personality (functional but forgettable) | `/delight` | Add moments of personality without sacrificing clarity |
+| Design system inconsistency (mixed patterns, one-off styles) | `/normalize` | Align to a consistent component/token system |
+| Onboarding/empty states (no guidance, blank screens, cold starts) | `/onboard` | Design first-run and empty-state experiences |
+| Technically ambitious effects (3D, shaders, advanced CSS, scroll-driven) | `/overdrive` | Push technical boundaries for standout moments |
+
+### Ambiguous Findings
+
+| Finding | Seems like | Actually | Why |
+|---------|-----------|----------|-----|
+| "Buttons look different on every page" | `/colorize` | `/normalize` | Consistency problem, not color problem |
+| "Too much whitespace" | `/arrange` | `/distill` if sparse, `/arrange` if spacing wrong | Check content density vs spacing values |
+| "Text is hard to read" | `/typeset` | `/colorize` if contrast, `/typeset` if scale/weight | Check what specifically makes it hard |
+| "Page feels slow" | `/optimize` | `/animate` if perceived, `/optimize` if measured | Check actual vs perceived performance |
+
+## Step 4: Fix
 
 Run each selected command in the correct order:
-
-**Execution order and rationale:**
 
 | Phase | Commands | Why first |
 |-------|----------|-----------|
@@ -70,11 +125,11 @@ After each command, one-line summary:
 /typeset — Fixed heading scale (h1-h4), increased body line-height to 1.6
 ```
 
-### Step 5: Polish
+## Step 5: Polish
 
 Run `/polish` as the final pass. Always.
 
-### Step 6: Verify
+## Step 6: Verify
 
 Show a delta summary, then ask whether to continue:
 
@@ -109,16 +164,6 @@ Some commands can interfere with each other. When both are selected, apply the m
 | `/overdrive` + `/adapt` | Ambitious effects often break on mobile | Run `/adapt` after `/overdrive` to verify responsive behavior |
 
 If a conflict isn't in this table, the execution order (Step 4) handles it.
-
----
-
-## Extras (conditional)
-
-| Trigger | Extra |
-|---------|-------|
-| URL provided and Playwright available | Load live URL for visual verification between rounds |
-| Before/after comparison requested | Desktop + mobile screenshots via Playwright |
-| User says "commit" or "ship" | Stage and commit modified files |
 
 ---
 

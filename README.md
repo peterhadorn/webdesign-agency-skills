@@ -6,7 +6,7 @@ Orchestration layer for [Impeccable](https://github.com/pbakaus/impeccable). Cha
 
 Impeccable gives you 20 design commands (`/audit`, `/critique`, `/typeset`, `/colorize`, etc.). These workflows handle the orchestration: which commands to run, in what order, how to synthesize findings, and how to present results.
 
-Two skills. One shared engine. Plain Markdown — no runtime, no dependencies.
+Two self-contained skills. Plain Markdown — no runtime, no dependencies.
 
 ## Skills
 
@@ -78,41 +78,6 @@ Targeted improvement loop. Diagnose, recommend, fix only what's needed.
 5. Runs selected commands, then `/polish`
 6. Offers to re-check with another audit
 
-## The Recommendation Loop
-
-Shared engine across both skills. See [`skills/_recommendation-loop.md`](skills/_recommendation-loop.md) for the full reference.
-
-```
-/audit          → technical findings
-/critique       → UX assessment
-Synthesize      → deduplicate, merge findings
-Map             → assign each finding to a command
-Group + order   → cluster by command, sort by severity
-Present         → user picks which to run
-Execute         → run selected, then /polish
-Re-check        → verify with another audit (optional)
-```
-
-### Finding-to-Command Mapping
-
-| Finding | Command |
-|---------|---------|
-| Over-engineered | `/distill` |
-| Layout/spacing | `/arrange` |
-| Typography | `/typeset` |
-| Color/contrast | `/colorize` |
-| Design system inconsistency | `/normalize` |
-| Copy/label clarity | `/clarify` |
-| Onboarding/empty states | `/onboard` |
-| Error handling/edge cases | `/harden` |
-| Responsive breakpoints | `/adapt` |
-| Performance | `/optimize` |
-| Motion/animation gaps | `/animate` |
-| Missing personality | `/delight` |
-| Too bland/safe | `/bolder` |
-| Too noisy/aggressive | `/quieter` |
-| Technically ambitious | `/overdrive` |
-
 ## Installation
 
 ### Claude Code
@@ -156,9 +121,16 @@ Run `/teach-impeccable` on your actual pages for a tailored context, or start fr
 
 ## Requirements
 
-- [Impeccable](https://github.com/pbakaus/impeccable) installed
-- Playwright or Chrome DevTools MCP server (for page rendering)
-- Claude Code
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+- [Impeccable](https://github.com/pbakaus/impeccable) installed as a Claude Code plugin
+- At least one browser MCP server (both recommended):
+
+| Server | What it does | Install |
+|--------|-------------|---------|
+| **Playwright MCP** | Headless browser — fast automated page loading and inspection | `claude mcp add playwright -- npx @playwright/mcp@latest` |
+| **Chrome DevTools** | Controls your real browser — sees cookies, geo content, logged-in states | `claude plugin add superpowers-chrome` |
+
+The skills will detect available browser tools on first run and guide you through setup if needed.
 
 ## How It Works
 
