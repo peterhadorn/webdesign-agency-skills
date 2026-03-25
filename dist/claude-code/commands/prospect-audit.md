@@ -152,7 +152,7 @@ You don't need to audit a competitor. Frame against industry norms and visitor e
 - Lead with the impact, not the technical cause
 - Frame against what competitors or visitors expect
 
-### What We'd Improve
+### What We'd Fix
 - [3-5 improvements as OUTCOMES]
 - "Make Google show your business properly" not "Add meta description"
 
