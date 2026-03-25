@@ -1,5 +1,7 @@
 ## Website Analysis: craigslist.org
 
+**Score: 4/10** — Lightning fast and distraction-free, but the dated interface and impossible mobile experience are pushing users to modern alternatives.
+
 ### What's Costing You Customers
 
 **1. Your site looks abandoned.** Craigslist's homepage has not meaningfully changed its design since the early 2000s. No images, no color, no visual cues -- just walls of purple text links on a plain white background. First-time visitors (especially younger users) instinctively associate this aesthetic with spam, phishing, or a site that is no longer maintained. People who would use your platform leave before they ever post a listing because the site does not look trustworthy enough to enter personal information or spend money on a paid posting.
@@ -8,17 +10,17 @@
 
 **3. On a phone, the experience is painful.** The category links are tiny text packed tightly together. On a mobile device, tapping "apartments" without accidentally hitting "parking / storage" or "office / commercial" right next to it is a genuine challenge. The sub-region buttons at the top ("sfc", "sby", "eby", "pen", "nby", "scz") are cryptic abbreviations that mean nothing to someone who just moved to the area. Mobile users make up the majority of web traffic today, and your site actively punishes them.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-- **Give the top 3 categories real prominence.** Housing, jobs, and for-sale are what bring people to Craigslist. Make these visually dominant with larger text, icons, or distinct sections -- so a visitor knows where to go within one second of landing. The long tail of subcategories can live one click deeper.
+1. **Increase tap target sizes for mobile.** Every clickable link and button should be large enough to tap comfortably on a phone screen. Right now, the dense link lists are a usability hazard on any device without a mouse. · _Small project_
 
-- **Make search the centerpiece.** The search box is a small, unstyled input tucked into the left sidebar. For a site built on finding things, search should be large, central, and inviting -- with suggestions or popular categories to guide new users. This single change could dramatically increase engagement from first-time visitors.
+2. **Make search the centerpiece.** The search box is a small, unstyled input tucked into the left sidebar. For a site built on finding things, search should be large, central, and inviting. This single change could dramatically increase engagement from first-time visitors. · _Small project_
 
-- **Spell out the sub-regions.** Replace "sfc", "sby", "eby" with "San Francisco", "South Bay", "East Bay." New residents, tourists, and anyone unfamiliar with local shorthand should not need a decoder ring to use your site. The space savings from abbreviations is not worth the confusion cost.
+3. **Give the top 3 categories real prominence.** Housing, jobs, and for-sale are what bring people to Craigslist. Make these visually dominant with larger text, icons, or distinct sections. The long tail of subcategories can live one click deeper. · _Larger project_
 
-- **Add a minimal visual layer.** This does not mean a flashy redesign. Even simple category icons, slightly larger touch targets, and basic spacing improvements would signal "this site is actively maintained" without sacrificing the utilitarian identity that loyal users value.
+4. **Spell out the sub-regions.** Replace "sfc", "sby", "eby" with "San Francisco", "South Bay", "East Bay." New residents and tourists should not need a decoder ring to use your site. · _Quick win_
 
-- **Increase tap target sizes for mobile.** Every clickable link and button should be large enough to tap comfortably on a phone screen. Right now, the dense link lists are a usability hazard on any device without a mouse.
+5. **Add a minimal visual layer.** Simple category icons, slightly larger touch targets, and basic spacing improvements would signal "this site is actively maintained" without sacrificing the utilitarian identity. · _Larger project_
 
 ### What Caught Our Eye
 

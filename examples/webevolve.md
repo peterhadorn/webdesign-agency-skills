@@ -2,19 +2,21 @@
 
 > Self-audit produced by `/prospect-audit` — testing the tool on our own site.
 
+**Score: 5/10** — Strong headline and pricing transparency, but broken contact links and slow load time are actively losing leads.
+
 ### What's Costing You Customers
 
 - **Three contact links don't work.** "E-Mail schreiben", "Auf WhatsApp schreiben", and "Cookie-Einstellungen" all lead nowhere. A prospect who wants to reach you clicks, nothing happens, and they leave. That's a lost lead.
 - **The site takes over 4 seconds to fully load.** For a business that criticizes slow websites ("Überladen und langsam"), this is a contradiction visitors will notice — consciously or not.
 - **The body text uses the most generic font on the internet.** Inter is the default choice of every AI-generated landing page. For a company selling design quality, the font choice undermines the message.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-- **Fix the dead contact links** — wire up the actual mailto:, WhatsApp deeplink, and cookie consent handler. These are direct conversion paths that currently go nowhere.
-- **Cut the load time below 2 seconds** — audit the 6 scripts, defer non-critical JS, check hosting. A site selling speed should be fast.
-- **Replace Inter with a distinctive body font** — Source Sans 3, General Sans, or Bricolage Grotesque would match the bold tone of the hero without screaming "template."
-- **Remove emoji from B2B headings** — "Verpasste Aufträge" is already clear without 💸. The emojis make the page feel casual in a context where authority matters.
-- **Add basic accessibility landmarks** — a `<main>` wrapper and skip-navigation link. Quick wins that signal professionalism.
+1. **Fix the dead contact links** — wire up the actual mailto:, WhatsApp deeplink, and cookie consent handler. These are direct conversion paths that currently go nowhere. · _Quick win_
+2. **Cut the load time below 2 seconds** — audit the 6 scripts, defer non-critical JS, check hosting. A site selling speed should be fast. · _Small project_
+3. **Replace Inter with a distinctive body font** — Source Sans 3, General Sans, or Bricolage Grotesque would match the bold tone of the hero without screaming "template." · _Quick win_
+4. **Remove emoji from B2B headings** — "Verpasste Aufträge" is already clear without 💸. The emojis make the page feel casual in a context where authority matters. · _Quick win_
+5. **Add basic accessibility landmarks** — a `<main>` wrapper and skip-navigation link. Quick wins that signal professionalism. · _Quick win_
 
 ### What Caught Our Eye
 

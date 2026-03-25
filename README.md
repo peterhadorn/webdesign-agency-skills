@@ -27,6 +27,9 @@ Adapts to the site's language automatically.
 ````
 ## Website Analysis: example-cleaning.ch
 
+**Score: 4/10** — Solid local identity, but broken animations, missing SEO basics,
+and invisible images are costing you search traffic and trust.
+
 ### What's Costing You Customers
 - Your scroll animations are broken. Visitors see a static page instead
   of the polished experience you designed. A technical error is blocking
@@ -36,13 +39,13 @@ Adapts to the site's language automatically.
 - When someone shares your link on WhatsApp, the preview is blank. No
   image, no text. Looks unprofessional and gets clicked less.
 
-### What We'd Fix
-- Make Google show your business properly. Add a description and preview
-  image so every search result looks professional.
-- Fix the broken animations. One technical correction restores all the
-  motion effects across the site.
-- Make your images visible to Google. Right now Google can't read 7 of
-  your 8 images. That's lost visibility for local searches.
+### What We'd Fix (in priority order)
+1. Fix the broken animations. One technical correction restores all the
+   motion effects across the site. · _Quick win_
+2. Make Google show your business properly. Add a description and preview
+   image so every search result looks professional. · _Quick win_
+3. Make your images visible to Google. Right now Google can't read 7 of
+   your 8 images. That's lost visibility for local searches. · _Quick win_
 
 ### What Caught Our Eye
 - The green/purple color scheme stands out from typical cleaning company

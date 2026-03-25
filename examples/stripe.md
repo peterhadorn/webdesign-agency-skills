@@ -1,5 +1,7 @@
 ## Website Analysis: stripe.com
 
+**Score: 7/10** — Strong brand and conversion flow, but accessibility gaps and mobile tap targets are leaving money on the table.
+
 ### What's Costing You Customers
 
 - **86% of your images are invisible to search engines and screen readers.** 31 out of 36 images on your homepage have no description. Google cannot index what it cannot read, and the 15-20% of visitors using assistive technology (screen readers, slow connections showing alt text) get a broken experience. Every invisible image is a missed chance to rank and convert.
@@ -8,17 +10,17 @@
 
 - **There is no way to skip your navigation with a keyboard.** Visitors using keyboards (accessibility needs, power users, anyone with a broken trackpad) must tab through every single navigation item before reaching your content. Many will give up. This also fails a basic web accessibility compliance requirement (WCAG 2.4.1), which carries legal exposure in the US and EU.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-1. **Add descriptions to every image** -- especially the product screenshots and customer logos. This directly improves search engine visibility and makes the site usable for all visitors. Estimated impact: better image search rankings and ADA compliance.
+1. **Increase touch target sizes on mobile** — buttons and links need to be at least 44x44 pixels. This is a one-time CSS change that immediately reduces mobile bounce rates. · _Quick win_
 
-2. **Increase touch target sizes on mobile** -- buttons and links need to be at least 44x44 pixels. This is a one-time CSS change that immediately reduces mobile bounce rates. Visitors who can actually tap what they want are visitors who convert.
+2. **Add descriptions to every image** — especially the product screenshots and customer logos. This directly improves search engine visibility and makes the site usable for all visitors. · _Quick win_
 
-3. **Add keyboard skip navigation** -- a single hidden link that lets keyboard users jump past the menu. Standard practice for any site that cares about accessibility compliance. Takes an hour to implement, eliminates a category of legal risk.
+3. **Add keyboard skip navigation** — a single hidden link that lets keyboard users jump past the menu. Standard practice for any site that cares about accessibility compliance. · _Quick win_
 
-4. **Fix the duplicate page title (H1)** -- the main heading is rendered twice in the code. Search engines get confused when a page has two identical titles. Consolidating to one clean H1 improves how Google understands and ranks the page.
+4. **Fix the duplicate page title (H1)** — the main heading is rendered twice in the code. Search engines get confused when a page has two identical titles. · _Quick win_
 
-5. **Reduce decision fatigue in the hero** -- "Get started" and "Sign up with Google" and "Contact sales" all compete for attention above the fold. Testing a single primary call-to-action could lift conversion rates, with secondary options available but visually quieter.
+5. **Reduce decision fatigue in the hero** — "Get started" and "Sign up with Google" and "Contact sales" all compete for attention above the fold. Testing a single primary CTA could lift conversion rates. · _Small project_
 
 ### What Caught Our Eye
 

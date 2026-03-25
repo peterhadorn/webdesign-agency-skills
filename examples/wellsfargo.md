@@ -1,5 +1,7 @@
 ## Website Analysis: wellsfargo.com
 
+**Score: 5/10** — Solid accessibility and trust signals, but the homepage tries to serve everyone and ends up guiding no one.
+
 ### What's Costing You Customers
 
 **1. The homepage tries to do everything at once, so visitors do nothing.**
@@ -11,17 +13,17 @@ The very first thing visitors see is a login form with "Good afternoon" and user
 **3. Promotional overload dilutes every offer.**
 There are at least five separate promotional offers visible on the homepage: $325 checking bonus, 60,000 credit card points (appears twice with different cards), $125 student bonus, and a savings account push. When you promote everything, you promote nothing. Each offer cannibalizes attention from the others. A visitor interested in the checking bonus gets distracted by the credit card. A student sees the $325 offer first and may never scroll to find the $125 one meant for them. This is leaving conversions on the table.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-1. **Give new visitors a clear entry point.** Separate the experience for existing customers (sign-on) from prospects (product discovery). A simple "New to Wells Fargo?" path with a single, focused call-to-action would dramatically improve conversion for new account openings.
+1. **Give new visitors a clear entry point.** Separate the experience for existing customers (sign-on) from prospects (product discovery). A simple "New to Wells Fargo?" path would dramatically improve conversion for new account openings. · _Larger project_
 
-2. **Lead with one hero offer, not five.** Pick the highest-converting promotion and give it the spotlight. Rotate offers by segment or season rather than displaying them all at once. One strong offer converts better than five competing ones.
+2. **Lead with one hero offer, not five.** Pick the highest-converting promotion and give it the spotlight. Rotate offers by segment or season rather than displaying them all at once. · _Small project_
 
-3. **Create a visual hierarchy that guides the eye.** Right now, every section uses similar-sized headings and similar visual weight. A clear top-to-bottom flow -- hero offer, then supporting products, then trust/community content -- would keep visitors engaged longer and moving toward action.
+3. **Create a visual hierarchy that guides the eye.** A clear top-to-bottom flow — hero offer, then supporting products, then trust/community content — would keep visitors engaged longer and moving toward action. · _Larger project_
 
-4. **Simplify the "How can we help?" section.** The bottom of the page has "Find a location," "Make an appointment," and "Quick help" -- useful actions buried where few visitors scroll. These utility actions should be more accessible, possibly in the header or as a persistent element.
+4. **Surface the "How can we help?" actions.** "Find a location," "Make an appointment," and "Quick help" are buried where few visitors scroll. These utility actions should be in the header or as a persistent element. · _Small project_
 
-5. **Reduce the footer legal density.** The footer contains extensive legal disclaimers, trademark notices, and compliance text that, while necessary, creates an intimidating wall of fine print. Better formatting (collapsible sections, lighter typography) would maintain compliance without overwhelming visitors.
+5. **Reduce the footer legal density.** Collapsible sections and lighter typography would maintain compliance without overwhelming visitors. · _Small project_
 
 ### What Caught Our Eye
 

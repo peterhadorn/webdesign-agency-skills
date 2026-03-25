@@ -1,5 +1,7 @@
 ## Website Analysis: subway.com
 
+**Score: 5/10** — Great food photography and strong brand, but promotional overload and a cookie banner blocking the hero are costing conversions.
+
 ### What's Costing You Customers
 
 **1. Your homepage fights itself for attention.** There are 8+ buttons all screaming "click me" at the same time -- order buttons, sign-up buttons, deal buttons, loyalty buttons. When everything is urgent, nothing is. Visitors freeze up and leave. A hungry customer who just wants to place an order has to mentally sort through a wall of promotions to find the "Start Order" button hiding in the top corner. Every second of confusion is a lost sale.
@@ -8,17 +10,17 @@
 
 **3. Too many deals dilute all of them.** The page shows five simultaneous promotions ($6.99 Any Footlong, 100 bonus points, $3.99 Protein Pockets, $4.99 Sub of the Day, $6.99 Meal of the Day) plus a loyalty signup and a catering push. Research consistently shows that fewer, stronger offers outperform a buffet of choices. When a customer sees five deals, they compare and hesitate. When they see one great deal, they act.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-- **One clear action per screen.** A visitor should know within 2 seconds what to do: order food. Everything else (deals, loyalty, catering) is secondary. This alone could measurably increase online orders.
+1. **Move the cookie banner out of the way.** A small bar at the bottom of the screen (industry standard) instead of a popup covering your best content. Your hero promotion starts working for you on every single visit. · _Quick win_
 
-- **Move the cookie banner out of the way.** A small bar at the bottom of the screen (industry standard) instead of a popup covering your best content. Your hero promotion starts working for you on every single visit.
+2. **One clear action per screen.** A visitor should know within 2 seconds what to do: order food. Everything else (deals, loyalty, catering) is secondary. This alone could measurably increase online orders. · _Larger project_
 
-- **Cut the promotions in half.** Feature one headline deal prominently, show 2-3 others below it, and rotate them. Fewer choices, faster decisions, more orders.
+3. **Cut the promotions in half.** Feature one headline deal prominently, show 2-3 others below it, and rotate them. Fewer choices, faster decisions, more orders. · _Small project_
 
-- **Make the menu section actually useful.** Right now the "Menu" area shows four tiny thumbnail cards that tell a new customer almost nothing about what Subway sells. Either show your most popular items with names and prices, or remove the section and link to the full menu. Half-measures waste prime page space.
+4. **Make the menu section actually useful.** Show your most popular items with names and prices, or remove the section and link to the full menu. Half-measures waste prime page space. · _Small project_
 
-- **Fix the catering pitch.** The "perfect watch-party spread" copy ties your catering business to game days. Outside of football season, this feels stale and irrelevant. A year-round message ("Feed your next group for less") works every day, not just on Sundays in the fall.
+5. **Fix the catering pitch.** The "perfect watch-party spread" copy ties your catering business to game days. A year-round message ("Feed your next group for less") works every day, not just on Sundays in the fall. · _Quick win_
 
 ### What Caught Our Eye
 

@@ -56,9 +56,11 @@ Check `.impeccable.md` at project root. If missing, run `/teach-impeccable` firs
 ## Step 2: Load & Diagnose
 
 1. Navigate to the URL via browser. Wait for full render.
-2. Run `/audit` — accessibility, performance, theming, responsive, anti-patterns
-3. Run `/critique` — visual hierarchy, information architecture, emotional resonance
-4. Gather additional signals from the live page:
+2. **Take a desktop screenshot** (full viewport, above the fold). Save to `clients/<domain>/screenshot-desktop.png`.
+3. **Take a mobile screenshot** — resize viewport to 375x812 (iPhone), screenshot above the fold. Save to `clients/<domain>/screenshot-mobile.png`.
+4. Run `/audit` — accessibility, performance, theming, responsive, anti-patterns
+5. Run `/critique` — visual hierarchy, information architecture, emotional resonance
+6. Gather additional signals from the live page:
    - Page title, meta description, OG tags, Schema.org markup
    - Font stack, H1 content, images without alt text
    - Console errors, load timing
@@ -142,19 +144,55 @@ When highlighting a weakness, compare to what visitors expect — not abstract s
 
 You don't need to audit a competitor. Frame against industry norms and visitor expectations.
 
+### Overall Score
+
+After synthesizing all findings, assign a score from 1 to 10:
+
+**"How well does this site convert visitors into customers?"**
+
+| Score | Meaning |
+|-------|---------|
+| 1-3 | Actively losing business — broken fundamentals |
+| 4-5 | Functional but underperforming — obvious gaps |
+| 6-7 | Solid foundation — specific improvements would make a real difference |
+| 8-9 | Strong — minor polish needed |
+| 10 | Exceptional — hard to improve |
+
+Base the score on business impact, not technical perfection. A site with console errors but great conversion flow scores higher than a technically clean site that confuses visitors.
+
+### Effort Labels
+
+Tag each recommendation with an effort estimate:
+
+| Label | Meaning | Examples |
+|-------|---------|---------|
+| **Quick win** | Under a day, no redesign needed | Add meta description, fix broken link, increase button size |
+| **Small project** | A few days of focused work | Rework navigation, improve mobile layout, fix heading hierarchy |
+| **Larger project** | A week or more, may need design/strategy | Full responsive overhaul, content restructure, new onboarding flow |
+
+Be honest. Underestimating effort destroys trust when the client finds out later.
+
 ### Output Format
 
 ```markdown
 ## Website Analysis: [domain]
+
+**Score: X/10** — [one sentence explaining the score]
+
+![Desktop](clients/<domain>/screenshot-desktop.png)
+![Mobile](clients/<domain>/screenshot-mobile.png)
 
 ### What's Costing You Customers
 - [2-3 problems as LOST BUSINESS or LOST TRUST]
 - Lead with the impact, not the technical cause
 - Frame against what competitors or visitors expect
 
-### What We'd Fix
-- [3-5 improvements as OUTCOMES]
-- "Make Google show your business properly" not "Add meta description"
+### What We'd Fix (in priority order)
+1. [Highest impact fix] · _[effort label]_
+2. [Second highest] · _[effort label]_
+3. [Third] · _[effort label]_
+4. [etc.] · _[effort label]_
+5. [etc.] · _[effort label]_
 
 ### What Caught Our Eye
 - [3-4 POSITIVE observations — see specificity rules below]
@@ -162,6 +200,8 @@ You don't need to audit a competitor. Frame against industry norms and visitor e
 ### Technical Details (internal — do NOT send to client)
 - [Raw /audit and /critique findings]
 ```
+
+Priority order: rank by business impact, not technical severity. A broken contact link outranks a missing alt tag because it directly blocks revenue.
 
 ### "What Caught Our Eye" — Specificity Rules
 

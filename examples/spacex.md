@@ -1,5 +1,7 @@
 ## Website Analysis: spacex.com
 
+**Score: 6/10** — World-class visual storytelling, but no contact path and hidden navigation mean business visitors can't take the next step.
+
 ### What's Costing You Customers
 
 **Your site is invisible to people who can't see it.** 31 out of 36 images have no descriptions for screen readers. That means visually impaired visitors -- including engineers, procurement officers, and government officials -- get a blank experience. Beyond the ethical issue, this is a legal liability under ADA compliance standards.
@@ -8,17 +10,17 @@
 
 **Your navigation is hidden from everyone.** The entire site menu is collapsed behind a hamburger icon, even on desktop screens with plenty of room. Visitors who want to learn about your vehicles, missions, or launch services have to discover that small icon exists first. Research shows hamburger menus reduce feature discoverability by up to 50%.
 
-### What We'd Improve
+### What We'd Fix (in priority order)
 
-1. **Add a clear "Book a Launch" or "Contact Us" path** visible on the homepage -- not buried in the footer. Business customers need to know how to start a conversation within 5 seconds.
+1. **Add a clear "Book a Launch" or "Contact Us" path** visible on the homepage — not buried in the footer. Business customers need to know how to start a conversation within 5 seconds. · _Small project_
 
-2. **Show the navigation on desktop.** Keep the hamburger for mobile, but on wider screens, display the menu items directly. Visitors should see what you offer without having to click to find out.
+2. **Show the navigation on desktop.** Keep the hamburger for mobile, but on wider screens, display the menu items directly. Visitors should see what you offer without having to click to find out. · _Small project_
 
-3. **Add image descriptions to every photograph.** "Falcon 9 landing on a drone ship at sunset" takes 10 seconds to write and opens your site to millions of additional visitors while reducing legal risk.
+3. **Add image descriptions to every photograph.** "Falcon 9 landing on a drone ship at sunset" takes 10 seconds to write and opens your site to millions of additional visitors while reducing legal risk. · _Quick win_
 
-4. **Add a proper page heading (H1) and meta description.** Search engines currently see no main heading and no page summary. This directly affects how you appear in Google results.
+4. **Add a proper page heading (H1) and meta description.** Search engines currently see no main heading and no page summary. This directly affects how you appear in Google results. · _Quick win_
 
-5. **Differentiate your calls to action.** Right now, "Explore," "Learn More," "Reserve Your Ride," "Join a Mission," and "Order Now" all look identical. Make the most important action -- likely Starlink orders or launch reservations -- visually stand out.
+5. **Differentiate your calls to action.** Right now, "Explore," "Learn More," "Reserve Your Ride," "Join a Mission," and "Order Now" all look identical. Make the most important action visually stand out. · _Small project_
 
 ### What Caught Our Eye
 
