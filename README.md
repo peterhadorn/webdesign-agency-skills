@@ -78,6 +78,19 @@ Targeted improvement loop. Diagnose, recommend, fix only what's needed.
 5. Runs selected commands, then `/polish`
 6. Offers to re-check with another audit
 
+## Examples
+
+Real `/prospect-audit` output from live websites:
+
+| Site | What it shows |
+|------|---------------|
+| [stripe.com](examples/stripe.md) | Enterprise SaaS — strong brand, accessibility gaps |
+| [craigslist.org](examples/craigslist.md) | Famously minimal — dated design vs. deliberate simplicity |
+| [webevolve.ch](examples/webevolve.md) | Self-audit — testing the tool on our own site |
+| [spacex.com](examples/spacex.md) | Visual-first brand — hidden navigation, no contact path |
+| [subway.com](examples/subway.md) | Fast food chain — promotion overload, decision fatigue |
+| [wellsfargo.com](examples/wellsfargo.md) | Banking — competing priorities, new vs. existing customers |
+
 ## Installation
 
 ### Claude Code
