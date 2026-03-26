@@ -1,6 +1,6 @@
 # Web Design Agency Skills
 
-Two Claude Code skills for web design agencies. Audit any website and get a client-ready sales brief, or run a targeted improvement loop that diagnoses, recommends, and fixes design issues.
+Five Claude Code skills for web design agencies. Audit any website, get a client-ready sales brief, run a targeted improvement loop, achieve perfect Lighthouse scores, deep-dive into Core Web Vitals, or test responsive behavior across every breakpoint.
 
 Built on [Impeccable](https://github.com/pbakaus/impeccable)'s 20 design commands. These skills handle the orchestration: which commands to run, in what order, and how to translate findings into language clients actually understand.
 
@@ -76,6 +76,49 @@ Targeted improvement loop. Diagnose, recommend, fix only what's needed.
 4. You pick which to run
 5. Runs selected commands, then `/polish`
 6. Offers to re-check with another audit
+
+### `/lighthouse-100`
+
+Automated loop that gets every Lighthouse category to 100. Audits, parses every failing check, fixes it, and re-runs until Accessibility, Best Practices, and SEO all hit 100/100/100 — on both mobile and desktop.
+
+```
+/lighthouse-100 https://example.com
+```
+
+1. Runs Lighthouse audit (mobile first)
+2. Parses all failed audits from the JSON report
+3. Fixes each failure using built-in lookup tables (accessibility, best practices, SEO)
+4. Rebuilds and re-audits until all scores hit 100
+5. Repeats for desktop
+6. Reports every fix with before/after scores
+
+### `/performance-audit`
+
+Core Web Vitals deep dive. Goes beyond a Lighthouse Performance score — measures LCP, CLS, INP with element-level attribution, diagnoses the root cause, and applies targeted fixes.
+
+```
+/performance-audit https://example.com
+```
+
+1. Runs Lighthouse + performance trace + network analysis
+2. Records baseline metrics (LCP, CLS, INP, FCP, TTFB, Speed Index, TBT)
+3. Diagnoses each failing metric to its root cause (specific element, specific resource)
+4. Fixes in priority order: delivery → critical path → assets → layout stability → interactivity
+5. Re-measures and compares to baseline
+
+### `/responsive-check`
+
+Tests a page across 8 breakpoints (320px–1920px). Screenshots each, detects layout breaks, and fixes them.
+
+```
+/responsive-check https://example.com
+```
+
+1. Screenshots at Mobile S/M/L, Tablet Portrait/Landscape, Desktop, Desktop L, Ultrawide
+2. Analyzes each for overflow, overlaps, cut-off content, tiny touch targets, unreadable text
+3. Reports issues grouped by severity with screenshot evidence
+4. Fixes with targeted CSS + runs `/adapt` for systematic responsive cleanup
+5. Re-screenshots to verify
 
 ## Examples
 
